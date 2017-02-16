@@ -1,0 +1,36 @@
+<section class="todoapp">
+  <header class="header page-header">
+    <h1>ToDo List</h1>
+    <div class="col-lg-5 col-centered">
+      <input class="form-control" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
+    </div>
+  </header>
+  <section class="container-fluid col-lg-5 col-centered" *ngIf="todos.length > 0">
+    <ul class="list-group">
+      <li *ngFor="let todo of todos" [class.completed]="todo.complete" class="list-group-item">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-1 col-centered">
+              <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
+            </div>
+            <div class="col-md-8">
+              <label>{{todo.title}}</label>
+            </div>
+            <div class="col-md-2 col-centered">
+              <button type="button" class="deleteButton btn btn-danger" (click)="removeTodo(todo)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <footer class="panel-footer" *ngIf="todos.length > 0">
+    <div class="col-lg-5 col-centered">
+      <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} in total</span><br><br>
+      <div class="row col-lg-5 col-centered">
+        <span class="todo-count"><strong>{{todoCompleted}} </strong> {{todoCompleted == 1 ? 'item' : 'items'}} completed</span>
+        <span class="todo-count"><strong>{{todoRemain}} </strong> {{todoRemain == 1 ? 'item' : 'items'}} remain</span>
+      </div>
+    </div>
+  </footer>
+</section>
